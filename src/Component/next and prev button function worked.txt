@@ -1,0 +1,95 @@
+
+  // async componentDidMount() {
+  //   const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=1def2fe415d6435591428d94307addd4&page=1&pageSize=${this.props.pageSize}`;
+  //   this.setState({ loading: true });
+  //   let data = await fetch(url);
+  //   let parseData = await data.json();
+  //   console.log(parseData);
+  //   this.setState({
+  //     articles: parseData.articles,
+  //     totalResults: parseData.totalResults,
+  //     loading: false,
+  //   });
+  // }
+
+  lePreviousClick = async () => {
+    console.log("Previous");
+  //   let url = `https://newsapi.org/v2/top-headlines?country=${
+  //     this.props.country
+  //   }&category=${
+  //     this.props.category
+  //   }&apiKey=1def2fe415d6435591428d94307addd4&page=${
+  //     this.state.page - 1
+  //   }&pageSize=${this.props.pageSize}`;
+  //   this.setState({ loading: true });
+  //   let data = await fetch(url);
+  //   let parseData = await data.json();
+  //   console.log(parseData);
+  //   this.setState({
+  //     page: this.state.page - 1,
+  //     articles: parseData.articles,
+  //     totalResults: parseData.totalResults,
+  //     loading: false,
+  //   });
+  //   }
+
+andleNextClick = async () => {
+    console.log("Next");
+    // if (
+    //   !(
+    //     this.state.page + 1 >
+    //     Math.ceil(this.state.totalResults / this.props.pageSize)
+    //   )
+    // ) {
+    //   let url = `https://newsapi.org/v2/top-headlines?country=${
+    //     this.props.country
+    //   }&category=${
+    //     this.props.category
+    //   }&apiKey=1def2fe415d6435591428d94307addd4&page=${
+    //     this.state.page + 1
+    //   }&pageSize=${this.props.pageSize}`;
+    //   this.setState({ loading: true });
+    //   let data = await fetch(url);
+    //   let parseData = await data.json();
+    //   this.setState({
+    //     page: this.state.page + 1,
+    //     articles: parseData.articles,
+    //     totalResults: parseData.totalResults,
+    //     loading: false,
+    //   });
+    // }
+    // }
+
+    Button HTML
+    <div className="container d-flex justify-content-between mt-3">
+          <button
+            disabled={this.state.page <= 1}
+            className="btn btn-dark"
+            onClick={this.handlePreviousClick}
+          >
+            &larr; Previous
+          </button>
+          <button
+            className="btn btn-dark"
+            disabled={
+              this.state.page + 1 >
+              Math.ceil(this.state.totalResults / this.props.pageSize)
+            }
+            onClick={this.handleNextClick}
+          >
+            Next &rarr;
+          </button>
+        </div>
+        
+  //fetch more data function
+    fetchMoreData = async () => {
+    this.setState({ page: this.state.page + 1 });
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=9db0fdcb56e34407864da5fcdbabac38&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    this.setState({ loading: true });
+    let data = await fetch(url);
+    let parsedData = await data.json();
+    this.setState({
+      articles: this.state.articles.concat(parsedData.articles),
+      totalResults: parsedData.totalResults,
+    });
+  };
